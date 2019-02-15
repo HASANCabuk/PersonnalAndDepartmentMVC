@@ -1,0 +1,31 @@
+﻿
+@model PersonnelDepartment.Models.EntityFramework.Department
+@{
+    ViewBag.Title = "DepartmentF";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    <form method="post" action="">
+        <div class="form-group">
+            <label> Department Name</label>
+            <input type="text" name="Name" value="@Model.Name" class="form-control" />
+            <button type="submit" class="btn btn-success">Add</button>
+    </form>
+*@
+@using (Html.BeginForm("Create", "Department", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    @Html.HiddenFor(x => x.Id)
+    <button type="submit" class="btn btn-success">Add</button>
+}
+@section scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

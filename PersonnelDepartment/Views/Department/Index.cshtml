@@ -1,0 +1,42 @@
+﻿@using PersonnelDepartment.Models.EntityFramework
+@model List<Department>
+@*@model List <PersonnelDepartment.Models.EntityFramework.Department>*@
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <a class="btn btn-success" href="Department/Create"> New Department</a>
+    <h2>Department List</h2>
+    <table class="table table-bordered" id="tblDepartments">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dep in Model)
+            {
+            <tr>
+                <td>@dep.Id</td>
+                <td>@dep.Name</td>
+                <td><a class=" btn btn-primary" href="Update/@dep.Id">Update</a></td>
+                <td><a class=" btn btn-warning btnDepartmentDelete" data-id="@dep.Id">Delete</a></td>
+
+                @* <td><a class=" btn btn-warning" href="Delete/@dep.Id">Delete</a></td>
+            @* <td>
+                         @Html.ActionLink("Update","Update",new { Id=dep.Id},new { @class
+                ="btn btn-success"})
+                     </td>
+                     <td>
+                         @Html.ActionLink("Delete", "Delete", new { Id = dep.Id }, new{ @class
+                = "btn btn-danger"})
+                     </td>*@
+        </tr>
+        }
+    </tbody>
+</table>
+

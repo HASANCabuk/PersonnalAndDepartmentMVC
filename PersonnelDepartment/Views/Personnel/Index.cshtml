@@ -1,0 +1,78 @@
+﻿@model List<PersonnelDepartment.Models.EntityFramework.Personnel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Html.ActionLink("New Personnel", "Create", null, new { @class = "btn btn-success" })
+@*< a class="btn btn-success" href= "NewPersonnel"> New Personnel</a>*@
+<h2>Personnel List</h2>
+
+<table class="table table-bordered" id="tblPersonnels">
+    <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Married</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var per in Model)
+        {
+            <tr>
+                <td>@per.Name</td>
+                <td>@per.Surname</td>
+                <td>@(DateTime.Now.Year - per.Date_of_Birth.Value.Year)</td>
+                <td>@per.Date_of_Birth.Value.ToString("dd.MM.yyyy")</td>
+                <td>@(per.Gender == true ? "Male" : "Female")</td>
+                <td>@(per.Married == true ? "Married" : "Single")</td>
+                <td>@per.Department.Name</td>
+                <td>@per.Salary</td>
+                <td><a class=" btn btn-primary" href="Update/@per.Id">Update</a></td>
+                <td><a class=" btn btn-warning" href="Delete/@per.Id">Delete</a></td>
+                @*<td><a class=" btn btn-warning btnPersonnelDelete" data-id="@per.Id">Delete</a></td>
+
+                        @*   <td>
+                                 @if (per.Gender)
+                                 {
+                                     <span>Male</span>
+                                 }
+                                 else
+                                 {
+                                     <span>Female</span>
+                                 }
+                             </td>
+                             <td>
+                                 @if (per.Married)
+                                 {
+                                     <span>Married</span>
+                                 }
+                                 else
+                                 {
+                                     <span>Single</span>
+                                 }
+                             </td>
+
+                         <td>
+                             @Html.ActionLink("Update","Update",new {Id=per.Id },new { @class
+                    ="btn btn-success"})
+                         </td>
+                         <td>
+                             @Html.ActionLink("Delete","Delete",new {Id=per.Id },new { @class
+                    ="btn btn-danger"})
+                         </td>
+                *@
+
+            </tr>
+        }
+    </tbody>
+</table>
